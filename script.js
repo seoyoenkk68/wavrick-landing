@@ -253,7 +253,7 @@ import 'lenis/dist/lenis.css';
   });
   [contactContent.querySelector('.contact-eyebrow'),contactContent.querySelector('.contact-description')].forEach((element,blockIndex)=>{
     const lines=element.innerHTML.split(/<br\s*\/?\s*>/i).map(html=>{
-      const temp=document.createElement('span');temp.innerHTML=html;return temp.textContent.trim();
+      const temp=document.createElement('span');temp.innerHTML=html;return temp.textContent.replace(/\s+/g,' ').trim();
     });
     element.setAttribute('aria-label',lines.join(' '));element.textContent='';
     lines.forEach((text,lineIndex)=>{
