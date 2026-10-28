@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070D1B" />
+    <title>WAVRICK — Beyond The Obvious</title>
+    <meta name="description" content="Beyond The Obvious — WAVRICK 브랜드 소개 및 3D 인터랙티브 랜딩 페이지" />
+    <meta property="og:title" content="WAVRICK — Beyond The Obvious" />
+    <meta property="og:description" content="Beyond The Obvious — WAVRICK 브랜드 소개 및 3D 인터랙티브 랜딩 페이지" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./hero-scene.js"></script>
+    <script type="module" src="./glass-fold.js"></script>
+  </head>
+  <body>
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a href="#top" class="logo" aria-label="WAVRICK 홈">
+          <img
+            src="./assets/aistudio/logo_w_b547dd1f.png"
+            alt="WAVRICK"
+            class="logo-img"
+            width="543"
+            height="70"
+          />
+        </a>
+        <nav class="desktop-nav" aria-label="주요 메뉴">
+          <a href="#about">ABOUT</a>
+          <a href="#how-we-build">HOW WE BUILD</a>
+          <a href="#vision">OUR VISION</a>
+          <a href="#our-business">OUR BUSINESS</a>
+          <button
+            type="button"
+            class="nav-contact"
+            id="headerContactBtn"
+            aria-label="문의 팝업 열기"
+          >
+            CONTACT <span aria-hidden="true">↗</span>
+          </button>
+        </nav>
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="메뉴 열기"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴" hidden>
+        <a href="#top">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#how-we-build">HOW WE BUILD</a>
+        <a href="#vision">OUR VISION</a>
+        <a href="#our-business">OUR BUSINESS</a>
+        <button type="button" class="mobile-nav-contact nav-contact">CONTACT</button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section
+        class="hero-scroll"
+        id="heroScroll"
+        aria-label="WAVRICK 브랜드 소개"
+      >
+        <div class="hero-sticky">
+          <div id="heroScene" class="hero-scene" aria-hidden="true"></div>
+          <div class="hero-grid" aria-hidden="true"></div>
+          <div class="hero-meta container">
+            <span>INDEPENDENT THINKING.<br />CONNECTED POSSIBILITIES.</span
+            ><span>WAVRICK®<br />SEOUL, KR</span>
+          </div>
+          <div class="hero-content container">
+            <p class="hero-eyebrow">01 — IDEAS INTO POSSIBILITIES</p>
+            <h1 class="hero-heading">
+              <span class="heading-first">BEYOND THE</span
+              ><span class="heading-highlight"
+                >OBVIOUS<span class="heading-period">.</span></span
+              >
+            </h1>
+            <p class="hero-services">
+              <span>UI/UX DESIGN</span><span>PLATFORM DEVELOPMENT</span
+              ><span>DIGITAL EXPERIENCE</span>
+            </p>
+            <div class="hero-copy">
+              <p class="hero-description">
+                익숙한 답을 넘어,<br />새로운 가능성을 발견하다
+              </p>
+
+              <a class="hero-cta" href="#about"
+                >EXPLORE WAVRICK <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+
+          <div class="hero-bottom container">
+            <span class="hero-index"
+              >01 / 02 <span class="index-line"></span> INTRODUCTION</span
+            >
+            <a href="#about" class="scroll-cue"
+              ><span class="scroll-icon">↓</span> SCROLL TO EXPLORE</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="about-scroll" id="about" aria-labelledby="about-title">
+        <div class="about-sticky">
+          <div class="hero-grid about-grid" aria-hidden="true"></div>
+          <div class="about-chapter-meta container">
+            <span>02 / A DIFFERENT PERSPECTIVE</span>
+          </div>
+          <div class="about-chapter-eyebrow container">
+            <p>(&nbsp;ABOUT WAVRICK&nbsp;)</p>
+          </div>
+          <div class="about-inner">
+            <div class="about-sequence">
+              <div class="about-panel is-active" data-step="0">
+                <h2 id="about-title">
+                  당연하다고 여겨온 것들에<br /><em>새로운 질문을 던집니다</em>
+                </h2>
+              </div>
+              <!--            <div class="about-panel" data-step="1"><p>세상을 바꾸는 시작은<br>언제나 거창하지 않습니다.</p></div>-->
+              <div class="about-panel" data-step="2">
+                <p>익숙한 것을 다른 시선으로<br />바라보는 작은 질문,</p>
+              </div>
+              <div class="about-panel" data-step="3">
+                <p>그 질문에서 발견한<br /><em>새로운 연결</em></p>
+              </div>
+
+              <div class="about-panel about-closing" data-step="5">
+                <h3>우리는,<br /><em>그 시작에 주목합니다</em></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="build-scroll"
+        id="how-we-build"
+        aria-labelledby="build-title"
+      >
+        <div class="build-sticky">
+          <div class="build-layout">
+            <div class="build-intro">
+              <p class="build-eyebrow">HOW WE BUILD</p>
+              <h2 id="build-title">
+                아이디어에 흐름을 더하고,<br /><em>흐름에 구조를 세웁니다.</em>
+              </h2>
+              <p class="build-description">
+                사용자의 경험을 이해하고, 새로운 가능성을 설계하며,<br />아이디어가
+                현실에서 작동할 수 있도록<br />디자인과 기술을 하나의 과정으로
+                연결합니다.
+              </p>
+            </div>
+            <div class="build-process">
+              <div class="build-step-index" aria-hidden="true">
+                <span>01</span><span>02</span><span>03</span><span>04</span>
+              </div>
+              <article class="build-step" data-build-step="0">
+                <div class="build-object-slot has-image">
+                  <img
+                    src="./assets/images/discover-blue-ribbon.png"
+                    alt="푸른빛의 유려한 리본 파동"
+                    width="1448"
+                    height="1086"
+                    decoding="async"
+                  />
+                </div>
+                <div class="build-step-meta">
+                  <span>01 / 04</span><span>발견</span>
+                </div>
+                <h3>DISCOVER<span aria-hidden="true">↗</span></h3>
+                <p>
+                  사용자와 시장을 관찰하고, 해결해야 할 문제와 기회를 찾습니다.
+                </p>
+              </article>
+              <article class="build-step" data-build-step="1">
+                <div class="build-object-slot has-image">
+                  <img
+                    src="./assets/images/design-glass-wave.png"
+                    alt="청록빛 유리 파동의 흐름"
+                    width="1448"
+                    height="1086"
+                    decoding="async"
+                  />
+                </div>
+                <div class="build-step-meta">
+                  <span>02 / 04</span><span>설계</span>
+                </div>
+                <h3>DESIGN<span aria-hidden="true">↗</span></h3>
+                <p>
+                  사용자의 흐름을 고민하고, 직관적인 UI/UX 경험을 설계합니다.
+                </p>
+              </article>
+              <article class="build-step" data-build-step="2">
+                <div class="build-object-slot has-image">
+                  <img
+                    src="./assets/images/build-layered-wave.png"
+                    alt="푸른 유리결의 층층이 파도"
+                    width="1672"
+                    height="941"
+                    decoding="async"
+                  />
+                </div>
+                <div class="build-step-meta">
+                  <span>03 / 04</span><span>구현</span>
+                </div>
+                <h3>BUILD<span aria-hidden="true">↗</span></h3>
+                <p>
+                  기획과 디자인을 실제로 작동하는 디지털 서비스로 구현합니다.
+                </p>
+              </article>
+              <article class="build-step" data-build-step="3">
+                <div class="build-object-slot has-image">
+                  <img
+                    src="./assets/images/evolve-glass-layers.png"
+                    alt="푸른 유리 레이어와 연결된 모듈"
+                    width="1448"
+                    height="1086"
+                    decoding="async"
+                  />
+                </div>
+                <div class="build-step-meta">
+                  <span>04 / 04</span><span>진화</span>
+                </div>
+                <h3>EVOLVE<span aria-hidden="true">↗</span></h3>
+                <p>
+                  사용 경험과 변화를 바탕으로 서비스를 지속적으로 발전시킵니다.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="vision"
+        class="vision-section"
+        aria-labelledby="vision-title"
+      >
+        <div class="vision-sticky">
+          <header class="vision-heading">
+            <p class="build-eyebrow">ALWAYS IN MOTION</p>
+            <h2 id="vision-title">OUR VISION</h2>
+          </header>
+          <div class="vision-group">
+            <div class="vision-card-stage" aria-label="비전 이미지 카드">
+              <div class="vision-card" data-vision-card="0">
+                <div class="vision-image-slot">
+                  <img src="./assets/images/main-vision-img-1.jpg" alt="..." />
+                  <span class="vision-slot-mark" aria-hidden="true">+</span>
+                  <span class="vision-slot-caption">VISION 01 / EVOLUTION</span>
+                </div>
+              </div>
+              <div class="vision-card" data-vision-card="1">
+                <div class="vision-image-slot">
+                  <img src="./assets/images/main-vision-img-2.jpg" alt="..." />
+                  <span class="vision-slot-mark" aria-hidden="true">+</span
+                  ><span class="vision-slot-caption"
+                    >VISION 02 / EXPERIENCE</span
+                  >
+                </div>
+              </div>
+              <div class="vision-card" data-vision-card="2">
+                <div class="vision-image-slot">
+                  <img src="./assets/images/main-vision-img-3.jpg" alt="..." />
+                  <span class="vision-slot-mark" aria-hidden="true">+</span
+                  ><span class="vision-slot-caption">VISION 03 / VALUE</span>
+                </div>
+              </div>
+            </div>
+            <div class="vision-copy-stage">
+              <article class="vision-copy" data-vision-copy="0">
+                <p class="vision-label">VISION 01 / EVOLUTION</p>
+                <h3>변화의 흐름에서,<br />새로운 가능성을 발견합니다.</h3>
+                <p class="vision-description">
+                  빠르게 변화하는 기술과 환경 속에서 새로운 기회를 발견하고, 더
+                  나은 내일을 위한 가능성을 탐색합니다.
+                </p>
+              </article>
+              <article class="vision-copy" data-vision-copy="1">
+                <p class="vision-label">VISION 02 / EXPERIENCE</p>
+                <h3>기술을 넘어,<br />경험의 진화를 생각합니다.</h3>
+                <p class="vision-description">
+                  기술의 발전이 사용자에게 더 나은 경험으로 이어질 수 있도록,
+                  사람과 기술의 연결을 고민합니다.
+                </p>
+              </article>
+              <article class="vision-copy" data-vision-copy="2">
+                <p class="vision-label">VISION 03 / VALUE</p>
+                <h3>오늘의 가능성을,<br />내일의 가치로 만들어갑니다.</h3>
+                <p class="vision-description">
+                  하나의 결과에 머무르지 않고, 지속적인 발전을 통해 새로운 경험과 가치를 만들어갑니다.
+                </p>
+              </article>
+            </div>
+          </div>
+          <div class="vision-bottom">
+            <span class="vision-count">01 / 03</span>
+          </div>
+        </div>
+      </section>
+      <section
+        id="our-business"
+        class="business-section"
+        aria-labelledby="business-title"
+      >
+        <div class="business-edge-marquees" aria-hidden="true">
+          <div class="business-edge-marquee business-edge-left">
+            <div class="business-edge-track">
+              <span>WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK</span
+              ><span>WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK</span>
+            </div>
+          </div>
+          <div class="business-edge-marquee business-edge-right">
+            <div class="business-edge-track">
+              <span>WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK</span
+              ><span>WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK WAVRICK</span>
+            </div>
+          </div>
+        </div>
+        <div class="business-inner">
+          <header class="business-heading">
+            <span class="build-eyebrow business-eyebrow">WAVRICK</span>
+            <h2 id="business-title">OUR BUSINESS</h2>
+          </header>
+          <article
+            class="platform platform-mother"
+            aria-labelledby="mother-title"
+          >
+            <div
+              class="platform-browser mother-preview"
+              aria-label="마더365 서비스 소개 프리뷰"
+            >
+              <div class="browser-bar" aria-hidden="true">
+                <span class="browser-dots">● ● ●</span
+                ><span class="browser-address">MOTHER365</span><span>↗</span>
+              </div>
+              <div class="browser-screen">
+                <img
+                  class="mother-site-image"
+                  src="./assets/images/mother365-preview.jpg"
+                  alt="마더365 홈페이지 — 내 가족을 위한 돌봄 플랫폼"
+                  width="2540"
+                  height="1227"
+                  decoding="async"
+                />
+                <div class="browser-overlay">
+                  <a
+                    href="https://mother365.co.kr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="shiny-cta-button"
+                    aria-label="마더365 홈페이지 바로가기"
+                  >
+                    <span class="shiny-beam-track" aria-hidden="true">
+                      <span class="shiny-beam"></span>
+                    </span>
+                    <span class="shiny-inner">
+                      <span class="shiny-dots" aria-hidden="true"></span>
+                      <span class="shiny-glow" aria-hidden="true"></span>
+                      <span class="shiny-label">
+                        <span>홈페이지 바로가기</span>
+                        <svg class="shiny-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="platform-copy">
+              <div class="platform-meta">
+                <span>PLATFORM 01</span
+                ><span class="platform-status"><i></i>서비스 운영 중</span>
+              </div>
+              <div class="platform-name">
+                <h3 id="mother-title">MOTHER365</h3>
+                <span>마더365</span>
+              </div>
+              <h4>가족의 돌봄을, 더 편리하게 연결합니다.</h4>
+              <p>
+                가족간병 신청부터 보험 청구에 필요한 서류 지원까지.
+                <br />마더365는 복잡한 가족간병 과정을 더 쉽고 체계적으로
+                연결하는 <br /><strong>가족간병 통합 플랫폼</strong>입니다.
+              </p>
+            </div>
+          </article>
+          <article
+            class="platform platform-ocean"
+            aria-labelledby="ocean-title"
+          >
+            <div
+              class="platform-browser ocean-preview"
+              aria-label="에프오션 준비 중 티저"
+            >
+              <div class="browser-bar" aria-hidden="true">
+                <span class="browser-dots">● ● ●</span
+                ><span class="browser-address">F-OCEAN</span><span>↗</span>
+              </div>
+              <div class="browser-screen">
+                <div class="ocean-site">
+                  <span class="ocean-site-label">THE NEXT CONNECTION</span>
+                  <div class="ocean-horizon" aria-hidden="true"></div>
+                  <strong>F-OCEAN<span>COMING SOON</span></strong
+                  ><span class="ocean-site-bottom"
+                    >OUR NEXT CHAPTER IS ON ITS WAY <span>↗</span></span
+                  >
+                </div>
+                <!-- 유지보수를 위해 구조를 갖추되 요청에 따라 현재는 숨김 처리 -->
+                <div class="browser-overlay browser-overlay-hidden" hidden aria-hidden="true">
+                  <a
+                    href="#"
+                    class="shiny-cta-button"
+                    tabindex="-1"
+                  >
+                    <span class="shiny-beam-track" aria-hidden="true">
+                      <span class="shiny-beam"></span>
+                    </span>
+                    <span class="shiny-inner">
+                      <span class="shiny-dots" aria-hidden="true"></span>
+                      <span class="shiny-glow" aria-hidden="true"></span>
+                      <span class="shiny-label">
+                        <span>홈페이지 바로가기</span>
+                        <svg class="shiny-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="platform-copy">
+              <div class="platform-meta">
+                <span>PLATFORM 02</span><span>COMING SOON</span>
+              </div>
+              <div class="platform-name">
+                <h3 id="ocean-title">F-OCEAN</h3>
+                <span>에프오션</span>
+              </div>
+              <h4>서비스 준비중 입니다.</h4>
+              <p>에프오션에 관한 짧은 설명 필요</p>
+            </div>
+            <p class="business-beyond">AND BEYOND.</p>
+          </article>
+        </div>
+      </section>
+      <section
+        id="glass-fold"
+        class="glass-fold-section contact-section"
+        aria-labelledby="contact-title"
+      >
+        <div id="contact" class="contact-anchor" aria-hidden="true"></div>
+        <canvas aria-hidden="true"></canvas>
+        <div class="contact-content">
+          <p class="build-eyebrow contact-eyebrow">LET’S MAKE THE NEXT</p>
+          <h2 id="contact-title">
+            새로운 시작은<br /><em>서로 다른 생각이 만나는 순간.</em>
+          </h2>
+          <p class="contact-description">
+            당신의 아이디어에 우리의 디자인과 기술을 더해 <br />새로운 경험을
+            함께 만들어갑니다.
+          </p>
+          <button class="contact-project" type="button">
+            START A PROJECT <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+      <footer id="siteFooter" class="page-footer">
+        <a href="#top" class="footer-logo" aria-label="WAVRICK 홈">
+          <img
+            src="./assets/aistudio/logo_w_b547dd1f.png"
+            alt="WAVRICK"
+            class="footer-logo-img"
+            width="543"
+            height="70"
+          />
+        </a>
+        <span>© 2026 WAVRICK</span>
+        <a href="#top">BACK TO TOP ↑</a>
+      </footer>
+    </main>
+
+    <!-- Contact Layer Modal (Prototype) -->
+    <div
+      id="contactModal"
+      class="contact-modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="contact-modal-backdrop" id="modalBackdrop"></div>
+      <div class="contact-modal-dialog">
+        <button
+          type="button"
+          class="contact-modal-close"
+          id="modalClose"
+          aria-label="닫기"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="contact-modal-content">
+          <form class="contact-modal-form" id="contactForm">
+            <div class="modal-header-wrap">
+              <span class="modal-badge">Contact Us</span>
+              <h3 id="modalTitle" class="modal-title">Let’s Get In Touch.</h3>
+              <p class="modal-subtitle">
+                새로운 프로젝트나 협업 문의를 남겨주시면 검토 후 신속히 연락드리겠습니다.
+              </p>
+            </div>
+
+            <div class="modal-fields" id="modalFields">
+              <div class="modal-form-group">
+                <label for="modalName" class="modal-label">성명</label>
+                <div class="modal-input-wrap">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M18.311 16.406a9.64 9.64 0 0 0-4.748-4.158 5.938 5.938 0 1 0-7.125 0 9.64 9.64 0 0 0-4.749 4.158.937.937 0 1 0 1.623.938c1.416-2.447 3.916-3.906 6.688-3.906 2.773 0 5.273 1.46 6.689 3.906a.938.938 0 0 0 1.622-.938M5.938 7.5a4.063 4.063 0 1 1 8.125 0 4.063 4.063 0 0 1-8.125 0"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <input
+                    type="text"
+                    id="modalName"
+                    name="name"
+                    class="modal-input"
+                    placeholder="성함을 입력해주세요"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="modal-form-group">
+                <label for="modalEmail" class="modal-label">이메일</label>
+                <div class="modal-input-wrap">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M17.5 3.438h-15a.937.937 0 0 0-.937.937V15a1.563 1.563 0 0 0 1.562 1.563h13.75A1.563 1.563 0 0 0 18.438 15V4.375a.94.94 0 0 0-.938-.937m-2.41 1.874L10 9.979 4.91 5.313zM3.438 14.688v-8.18l5.928 5.434a.937.937 0 0 0 1.268 0l5.929-5.435v8.182z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <input
+                    type="email"
+                    id="modalEmail"
+                    name="email"
+                    class="modal-input"
+                    placeholder="이메일 주소를 입력해주세요"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="modal-form-group">
+                <label for="modalPhone" class="modal-label">전화번호</label>
+                <div class="modal-input-wrap">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M3.625 2.5h2.5a1.25 1.25 0 0 1 1.218.966l.75 3.125a1.25 1.25 0 0 1-.356 1.184L6.094 9.422a10.04 10.04 0 0 0 4.484 4.484l1.647-1.643a1.25 1.25 0 0 1 1.184-.356l3.125.75a1.25 1.25 0 0 1 .966 1.218v2.5a1.25 1.25 0 0 1-1.25 1.25C8.01 17.625 2.375 11.99 2.375 3.75A1.25 1.25 0 0 1 3.625 2.5z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <input
+                    type="tel"
+                    id="modalPhone"
+                    name="phone"
+                    class="modal-input"
+                    placeholder="연락처를 입력해주세요"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="modal-form-group">
+                <label for="modalMessage" class="modal-label">문의 내용</label>
+                <textarea
+                  id="modalMessage"
+                  name="message"
+                  rows="4"
+                  class="modal-textarea"
+                  placeholder="프로젝트 계획이나 문의사항을 자유롭게 작성해주세요"
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="modal-submit-btn">
+                <span>문의하기</span>
+                <svg width="18" height="18" viewBox="0 0 21 20" fill="none">
+                  <path
+                    d="m18.038 10.663-5.625 5.625a.94.94 0 0 1-1.328-1.328l4.024-4.023H3.625a.938.938 0 0 1 0-1.875h11.484l-4.022-4.025a.94.94 0 0 1 1.328-1.328l5.625 5.625a.935.935 0 0 1-.002 1.33"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div class="modal-success-box" id="modalSuccessBox" hidden>
+              <div class="success-check-icon">✓</div>
+              <h4>문의가 성공적으로 접수되었습니다.</h4>
+              <p>기재해주신 연락처로 담당자가 확인 후 신속히 안내해 드리겠습니다.</p>
+              <button type="button" class="modal-ok-btn" id="modalOkBtn">확인</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "WAVRICK",
+  "description": "Beyond The Obvious — WAVRICK 브랜드 소개 및 3D 인터랙티브 랜딩 페이지",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
