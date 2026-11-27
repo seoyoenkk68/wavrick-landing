@@ -4,23 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070D1B" />
-    <title>WAVRICK — Beyond The Obvious</title>
-    <meta name="description" content="Beyond The Obvious — WAVRICK 브랜드 소개 및 3D 인터랙티브 랜딩 페이지" />
-    <meta property="og:title" content="WAVRICK — Beyond The Obvious" />
-    <meta property="og:description" content="Beyond The Obvious — WAVRICK 브랜드 소개 및 3D 인터랙티브 랜딩 페이지" />
+    <title>웨이브릭 WAVRICK | Beyond The Obvious</title>
+    <meta name="description" content="익숙한 답을 넘어 새로운 가능성을 발견합니다. 웨이브릭(WAVRICK)은 디자인과 기술로 사람과 서비스, 새로운 경험을 연결합니다." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mother365.dothome.co.kr/wavrick/" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="WAVRICK 웨이브릭" />
+    <meta property="og:title" content="웨이브릭 WAVRICK | Beyond The Obvious" />
+    <meta property="og:description" content="익숙한 답을 넘어 새로운 가능성을 발견합니다. 디자인과 기술로 사람과 서비스, 새로운 경험을 연결하는 웨이브릭." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mother365.dothome.co.kr/wavrick/" />
+    <meta property="og:image" content="https://mother365.dothome.co.kr/wavrick/wavrick-share.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="검은 배경 중앙의 흰색 WAVRICK 로고" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="stylesheet" href="./style.css" />
-    <script type="module" src="./script.js"></script>
-    <script type="module" src="./hero-scene.js"></script>
-    <script type="module" src="./glass-fold.js"></script>
+    <meta name="twitter:title" content="웨이브릭 WAVRICK | Beyond The Obvious" />
+    <meta name="twitter:description" content="디자인과 기술로 사람과 서비스, 새로운 경험을 연결하는 웨이브릭." />
+    <meta name="twitter:image" content="https://mother365.dothome.co.kr/wavrick/wavrick-share.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "웨이브릭",
+        "alternateName": "WAVRICK",
+        "url": "https://mother365.dothome.co.kr/wavrick/",
+        "logo": "https://mother365.dothome.co.kr/wavrick/wavrick-logo.png",
+        "email": "mother365.com@gmail.com",
+        "telephone": "+82-1670-3658",
+        "taxID": "143-87-03095",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "전룡6길 6-1, 4층",
+          "addressLocality": "전주시 완산구",
+          "addressRegion": "전북특별자치도",
+          "addressCountry": "KR"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/hero-scene.js"></script>
+    <script type="module" src="./scripts/glass-fold.js"></script>
   </head>
   <body>
     <header class="site-header" id="siteHeader">
       <div class="header-inner">
         <a href="./" class="logo" aria-label="WAVRICK 홈">
           <img
-            src="./assets/aistudio/logo_w_b547dd1f.png"
+            src="./assets/brand/wavrick-logo.png"
             alt="WAVRICK"
             class="logo-img"
             width="543"
@@ -41,6 +73,13 @@
             CONTACT <span aria-hidden="true">↗</span>
           </button>
         </nav>
+        <button
+          type="button"
+          class="nav-contact mobile-header-contact"
+          aria-label="문의 팝업 열기"
+        >
+          CONTACT <span aria-hidden="true">↗</span>
+        </button>
         <button
           class="menu-toggle"
           id="menuToggle"
@@ -476,7 +515,7 @@
       <footer id="siteFooter" class="page-footer">
         <a href="#top" class="footer-logo" aria-label="WAVRICK 홈">
           <img
-            src="./assets/aistudio/logo_w_b547dd1f.png"
+            src="./assets/brand/wavrick-logo.png"
             alt="WAVRICK"
             class="footer-logo-img"
             width="543"
@@ -637,7 +676,6 @@
             <div class="modal-success-box" id="modalSuccessBox" hidden>
               <div class="success-check-icon">✓</div>
               <h4>문의가 성공적으로 접수되었습니다.</h4>
-              <p>기재해주신 연락처로 담당자가 확인 후 신속히 안내해 드리겠습니다.</p>
               <button type="button" class="modal-ok-btn" id="modalOkBtn">확인</button>
             </div>
           </form>

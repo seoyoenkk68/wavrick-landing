@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Pretendard";
-  src: url("./assets/fonts/PretendardVariable.woff2") format("woff2");
+  src: url("../assets/fonts/PretendardVariable.woff2") format("woff2");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -2933,10 +2933,8 @@ select {
     height: 100vh;
     height: 100svh;
     min-height: 100svh;
-    overflow-anchor: none;
   }
   .page-footer {
-    overflow-anchor: none;
   }
   .glass-fold-section > canvas {
     top: 20%;
@@ -3720,6 +3718,26 @@ select {
   transition: all 0.2s ease;
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
 }
+.modal-submit-btn.is-loading {
+  cursor: wait;
+  opacity: 0.88;
+}
+.modal-submit-btn.is-loading svg {
+  visibility: hidden;
+}
+.modal-submit-btn.is-loading::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-left: -26px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: contact-submit-spin 0.7s linear infinite;
+}
+@keyframes contact-submit-spin {
+  to { transform: rotate(360deg); }
+}
 .modal-submit-btn:hover {
   background: #1d4ed8;
   transform: translateY(-1px);
@@ -3727,22 +3745,31 @@ select {
 }
 .modal-success-box {
   text-align: center;
-  padding: 24px 16px;
+  margin-top: 24px;
+  padding: 20px 16px;
   background: rgba(37, 99, 235, 0.08);
   border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: 20px;
 }
+.modal-success-box[data-state="error"] {
+  background: rgba(248, 113, 113, 0.08);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+.modal-success-box[data-state="error"] .success-check-icon {
+  background: rgba(248, 113, 113, 0.16);
+  color: #fca5a5;
+}
 .success-check-icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 16px;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
   border-radius: 50%;
   background: rgba(59, 130, 246, 0.2);
   color: #60a5fa;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 .modal-success-box h4 {
@@ -4271,3 +4298,87 @@ body.modal-open {
 }
 
 
+
+.mobile-header-contact {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .header-inner {
+    gap: 10px;
+  }
+  .logo {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin-right: auto;
+  }
+  .mobile-header-contact {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 2px;
+    border-color: #a3bde84a;
+    background: #0d182970;
+    color: #e6eef9;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+  }
+  .mobile-header-contact span {
+    margin-left: 6px;
+    color: #a8c9f2;
+    font-size: 12px;
+  }
+  .menu-toggle {
+    flex: 0 0 40px;
+    width: 40px;
+  }
+}
+@media (max-width: 360px) {
+  .header-inner {
+    gap: 6px;
+  }
+  .logo-img {
+    height: 18px;
+  }
+  .mobile-header-contact {
+    height: 34px;
+    padding: 0 9px;
+    font-size: 9px;
+  }
+  .menu-toggle {
+    flex-basis: 36px;
+    width: 36px;
+  }
+}
+/* Mobile About: shorten the pinned chapter and catch momentum at the next section. */
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  .about-scroll {
+    height: 280vh;
+    height: 280svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  #how-we-build {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+/* Mobile hero: show one screen, then let the page flow naturally. */
+@media (max-width: 767px) {
+  .hero-scroll {
+    height: 100svh;
+    min-height: 620px;
+  }
+  .hero-sticky {
+    position: relative;
+    top: auto;
+    height: 100svh;
+    min-height: 620px;
+  }
+}

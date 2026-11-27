@@ -36,7 +36,7 @@ import 'lenis/dist/lenis.css';
         panel.style.opacity = ''; panel.style.transform = ''; panel.style.visibility = '';
       } else {
         panel.style.opacity = opacity;
-        panel.style.transform = `translateY(calc(-50% + ${-relative * 40 + (i === 0 ? (1 - entrance) * 28 : 0)}px))`;
+        panel.style.transform = nativeTouchScroll.matches ? "translateY(-50%)" : "translateY(calc(-50% + " + (-relative * 40 + (i === 0 ? (1 - entrance) * 28 : 0)) + "px))";
         panel.style.visibility = opacity > .001 ? 'visible' : 'hidden';
       }
     });
@@ -346,10 +346,62 @@ import 'lenis/dist/lenis.css';
     }
   });
 
-  contactForm?.addEventListener('submit', e => {
+  contactForm?.addEventListener('submit', async e => {
     e.preventDefault();
-    if (modalFields) modalFields.hidden = true;
-    if (modalSuccessBox) modalSuccessBox.hidden = false;
+    if (!contactForm.reportValidity()) return;
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    if (submitButton.disabled) return;
+    const heading = modalSuccessBox?.querySelector('h4');
+    const submitLabel = submitButton.querySelector('span');
+    const originalSubmitLabel = submitLabel?.textContent || '문의하기';
+    submitButton.disabled = true;
+    submitButton.classList.add('is-loading');
+    if (submitLabel) submitLabel.textContent = '전송 중...';
+    submitButton.setAttribute('aria-busy', 'true');
+
+    try {
+      const formValues = Object.fromEntries(new FormData(contactForm).entries());
+      const response = await fetch('https://formsubmit.co/ajax/seoyeonkk68@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formValues.name,
+          email: formValues.email,
+          phone: formValues.phone,
+          message: formValues.message,
+          privacyConsent: '동의',
+          _replyto: formValues.email,
+          _subject: `[WAVRICK 문의] ${formValues.name}`,
+          _template: 'table'
+        })
+      });
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || '문의 전송에 실패했습니다.');
+      }
+
+      if (modalFields) modalFields.hidden = true;
+      if (modalSuccessBox) {
+        modalSuccessBox.hidden = false;
+        modalSuccessBox.dataset.state = 'success';
+      }
+      if (heading) heading.textContent = '문의가 성공적으로 접수되었습니다.';
+    } catch (error) {
+      if (modalFields) modalFields.hidden = true;
+      if (modalSuccessBox) {
+        modalSuccessBox.hidden = false;
+        modalSuccessBox.dataset.state = 'error';
+      }
+      if (heading) heading.textContent = '문의 접수에 실패했습니다.';
+      console.error('Contact form submission failed:', error);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+    }
   });
 
   function setupPolicyDialog(id, triggerSelector) {
