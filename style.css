@@ -2932,6 +2932,11 @@ select {
   .glass-fold-section {
     height: 100vh;
     height: 100svh;
+    min-height: 100svh;
+    overflow-anchor: none;
+  }
+  .page-footer {
+    overflow-anchor: none;
   }
   .glass-fold-section > canvas {
     top: 20%;
@@ -2940,7 +2945,7 @@ select {
   }
   .contact-content {
     position: absolute;
-    top: 50%;
+    top: 46%;
     left: 50%;
     width: calc(100% - 48px);
     padding-top: 0;
