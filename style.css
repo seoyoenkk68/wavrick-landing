@@ -3329,6 +3329,8 @@ select {
   }
   .vision-copy h3 {
     font-size: clamp(27px, 2.8vw, 34px);
+    white-space: normal;
+    line-height: 1.35;
   }
   .vision-description {
     font-size: 16px;
@@ -3980,6 +3982,46 @@ body.modal-open {
   }
   .shiny-label {
     font-size: 13px;
+  }
+}
+
+/* Tablet navigation and editorial copy need a little more room. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .desktop-nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: none;
+  }
+  .menu-toggle span {
+    width: 25px;
+    height: 1px;
+    background: #fff;
+  }
+  .mobile-nav:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px var(--gutter);
+    background: #101724;
+    border-bottom: 1px solid #ffffff22;
+    font-size: 12px;
+  }
+  .mobile-nav button {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
   }
 }
 
