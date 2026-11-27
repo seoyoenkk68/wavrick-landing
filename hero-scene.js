@@ -135,9 +135,11 @@ try {
       const cssOffsetY = cssRect.top - bounds.top;
       const cssScale = Math.max(0.05, cssRect.width / 100);
       const aboutRect = about.getBoundingClientRect();
-      const travel = reduced.matches || isMobile
+      const travel = reduced.matches
         ? 0
-        : Math.max(0, Math.min(1, 1 - aboutRect.top / height));
+        : isMobile
+          ? Math.max(0, Math.min(1, (height - aboutRect.top) / (height * 0.38)))
+          : Math.max(0, Math.min(1, 1 - aboutRect.top / height));
       const waveTravel = Math.max(
         0,
         Math.min(1, (height * 1.5 - aboutRect.top) / (height * 0.5)),
@@ -151,17 +153,23 @@ try {
       const u = travel * travel * (3 - 2 * travel);
       const v = 1 - u;
       // Cubic Bezier: right of hero -> low sweeping arc -> left/centre of ABOUT.
-      const pathX =
+      const pathX = isMobile
+        ? startX + (end.left - startX) * u
+        :
         v * v * v * startX +
         3 * v * v * u * (width * 0.82) +
         3 * v * u * u * (width * 0.16) +
         u * u * u * end.left;
-      const pathY =
+      const pathY = isMobile
+        ? startY + (end.top - startY) * u
+        :
         v * v * v * startY +
         3 * v * v * u * (height * 0.78) +
         3 * v * u * u * (height * 0.72) +
         u * u * u * end.top;
-      const pathScale = cssScale * (1 - u) + (end.width / 100) * u;
+      const pathScale = isMobile
+        ? cssScale * (1 - u * 0.72) + (end.width / 100) * u * 0.72
+        : cssScale * (1 - u) + (end.width / 100) * u;
       cubeGroup.visible = !reduced.matches || aboutRect.top > height * 0.6;
       const worldHeight =
         2 *
@@ -201,7 +209,17 @@ try {
       if (!reduced.matches) cubeSpin += delta * (.09 + cubeScrollBoost * .42);
       // Business only: scroll distance drives a spring, so each wheel movement
       // creates a clear turn, a little overshoot, then a gentle settling motion.
-      if (!reduced.matches && businessCubeReveal > .01) {
+      if (!reduced.matches && isMobile && businessCubeReveal > .01) {
+        const mobileDelta = scrollY - mobileBusinessScrollY;
+        if (Math.abs(mobileDelta) > 2) {
+          const turnStep = THREE.MathUtils.clamp(Math.abs(mobileDelta) / 800, 0.04, 0.16);
+          businessSpinTarget += Math.sign(mobileDelta) * Math.PI * turnStep;
+        }
+        mobileBusinessScrollY = scrollY;
+        businessSpinVelocity += ((businessSpinTarget - businessSpinAngle) * 42 - businessSpinVelocity * 9) * delta;
+        businessSpinVelocity = THREE.MathUtils.clamp(businessSpinVelocity, -8, 8);
+        businessSpinAngle += businessSpinVelocity * delta;
+      } else if (!reduced.matches && businessCubeReveal > .01) {
         businessSpinTarget += THREE.MathUtils.clamp(scrollDelta, -180, 180) * .005;
         businessSpinVelocity += ((businessSpinTarget - businessSpinAngle) * 85 - businessSpinVelocity * 12) * delta;
         businessSpinVelocity = THREE.MathUtils.clamp(businessSpinVelocity, -4.5, 4.5);
@@ -746,7 +764,7 @@ try {
       Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) *
       camera.position.z;
     satellites.forEach(({ object, material, spec, index }) => {
-      const allowed = !mobile || [0, 1, 3].includes(index);
+      const allowed = true;
       const reveal = THREE.MathUtils.smoothstep(
         spread,
         index * 0.055,
@@ -754,20 +772,16 @@ try {
       );
       object.visible = allowed && reveal > 0.005 && cubeGroup.visible;
       if (!object.visible) return;
-      const nx = mobile
-        ? index === 0
-          ? 0.16
-          : index === 1
-            ? 0.84
-            : 0.2
-        : spec[0];
-      const ny = mobile
-        ? index === 0
-          ? 0.27
-          : index === 1
-            ? 0.74
-            : 0.76
-        : spec[1];
+      const mobilePositions = [
+        [0.14, 0.36],
+        [0.86, 0.38],
+        [0.16, 0.62],
+        [0.82, 0.64],
+        [0.5, 0.31],
+        [0.52, 0.69],
+      ];
+      const nx = mobile ? mobilePositions[index][0] : spec[0];
+      const ny = mobile ? mobilePositions[index][1] : spec[1];
       const targetX =
         (nx - 0.5) * SATELLITE_SETTINGS.spreadX * worldH * camera.aspect;
       const targetY =
@@ -913,7 +927,11 @@ try {
     container.style.zIndex='';container.style.maskImage='';container.style.webkitMaskImage='';
     if (businessCubeReveal < .001) return;
     const worldH = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
-    const pointerX = reduced.matches || w < 768 ? .78 : businessPointer.x;
+    const businessTravel = Math.max(0, Math.min(1, (h * .55 - rect.top) / Math.max(rect.height - h * .1, 1)));
+    const mobileX = .2 + 0.6 * (0.5 - 0.5 * Math.cos(businessTravel * Math.PI * 2));
+    const pointerX = w < 768
+      ? mobileX
+      : reduced.matches ? .78 : businessPointer.x;
     const pointerY = reduced.matches || w < 768 ? .32 : businessPointer.y;
     const x = (Math.max(.08, Math.min(.92, pointerX)) - .5) * worldH * camera.aspect;
     const y = (.5 - Math.max(.12, Math.min(.88, pointerY))) * worldH + camera.position.y;
@@ -942,6 +960,7 @@ try {
   range.setStart(heading.firstChild, heading.firstChild.length - 3);
   range.setEnd(heading.firstChild, heading.firstChild.length);
   let businessSpinTarget = 0, businessSpinAngle = 0, businessSpinVelocity = 0;
+  let mobileBusinessScrollY = scrollY;
   let cubeSpin = 0, cubeScrollBoost = 0, cubeLastScrollY = scrollY;
   let elapsed = 0,
     previous = 0,

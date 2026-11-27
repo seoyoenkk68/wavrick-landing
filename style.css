@@ -960,8 +960,8 @@ main {
 @media (max-width: 767px) {
   :root {
     --about-cube-x: 50%;
-    --about-cube-y: 46%;
-    --about-cube-scale: 1.15;
+    --about-cube-y: 42%;
+    --about-cube-scale: 0.82;
   }
   .about-scroll {
     height: 480vh;
@@ -1181,11 +1181,16 @@ html.lenis {
 }
 @media (max-width: 767px) {
   .about-chapter-meta {
-    top: 108px;
-    font-size: 8px;
+    top: auto;
+    bottom: 34px;
+    justify-content: center;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 1.2px;
   }
   .about-chapter-eyebrow {
-    top: 24%;
+    top: 106px;
+    text-align: center;
   }
   .about-chapter-eyebrow p {
     font-size: 8px;
@@ -1782,6 +1787,21 @@ select {
   .build-step > p { min-height: 3.4em; }
   .build-object-slot { height: 150px; margin-top: 12px; }
 }
+@media (max-width: 767px) {
+  .build-intro {
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .build-intro h2,
+  .build-description {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .build-description { max-width: 360px; }
+  .build-description-mobile-break { display: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   .build-process { top: auto; height: auto; }
   .build-step-viewport { position: relative; inset: auto; overflow: visible; }
@@ -2116,6 +2136,18 @@ select {
   .platform-ocean {
     width: 100%;
   }
+  .platform-mother .browser-screen,
+  .platform-ocean .browser-screen {
+    height: clamp(190px, 58vw, 250px);
+  }
+  .mother-preview .mother-site-image,
+  .ocean-preview .ocean-site {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+  .mother-preview .mother-site-image { object-fit: cover; }
+  .ocean-preview .ocean-site { box-sizing: border-box; }
   .platform-ocean {
     margin-top: 125px;
   }
@@ -3190,13 +3222,29 @@ select {
   .vision-heading {
     right: 24px;
     left: 24px;
+    text-align: center;
+    z-index: 12;
+  }
+  .vision-heading h2 {
+    font-size: clamp(27px, 7.2vw, 36px);
+    line-height: 1.4;
+    letter-spacing: -0.045em;
   }
   .vision-card {
     width: 82vw;
   }
   .vision-copy-stage {
     right: 24px;
+    left: 24px;
+    text-align: center;
   }
+  .vision-bottom {
+    left: 24px;
+    right: 24px;
+    justify-content: center;
+    text-align: center;
+  }
+  .vision-bottom p { display: none; }
   .vision-label {
     font-size: 10px;
     margin-bottom: 20px;
@@ -3747,6 +3795,21 @@ body.modal-open {
 .platform-browser:hover .browser-overlay:not(.browser-overlay-hidden) {
   opacity: 1;
   pointer-events: auto;
+}
+@media (max-width: 767px) {
+  .mother-preview .browser-overlay:not(.browser-overlay-hidden) {
+    opacity: 1;
+    pointer-events: auto;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 14px;
+    background: linear-gradient(transparent 60%, rgba(5, 9, 16, 0.5));
+  }
+  .mother-preview .browser-overlay .shiny-cta-button {
+    transform: scale(0.82) translateY(0);
+    opacity: 1;
+    transform-origin: bottom right;
+  }
 }
 .browser-overlay-hidden {
   display: none !important;

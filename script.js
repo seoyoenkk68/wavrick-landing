@@ -203,7 +203,7 @@ import 'lenis/dist/lenis.css';
     const sequence=Math.max(0,Math.min(2,(depth-.15)/1.8));
     const active=Math.round(sequence);
     if(visionHeading){
-      if(reduced.matches){
+      if(reduced.matches || innerWidth < 768){
         visionHeading.style.transform='none';
         visionHeading.style.opacity='1';
         visionHeading.style.filter='none';
