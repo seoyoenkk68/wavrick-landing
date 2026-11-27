@@ -3112,7 +3112,7 @@ select {
     top: 95px;
   }
   .vision-heading h2 {
-    font-size: clamp(27px, 9vw, 42px);
+    font-size: 42px;
     line-height: 1.2;
   }
   .vision-heading .build-eyebrow {
