@@ -2945,7 +2945,7 @@ select {
   }
   .contact-content {
     position: absolute;
-    top: 40%;
+    top: 38%;
     left: 50%;
     width: calc(100% - 48px);
     padding-top: 0;
