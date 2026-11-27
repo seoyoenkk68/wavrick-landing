@@ -195,17 +195,17 @@ import 'lenis/dist/lenis.css';
   if(visionSection) visionObserver.observe(visionSection);
 
   const mobileAosTargets = [...document.querySelectorAll(
-    '.build-intro > *, .build-step, .vision-card, .vision-copy',
+    '.build-intro > *, .build-step, .vision-heading, .vision-card, .vision-copy',
   )];
   mobileAosTargets.forEach(item => item.classList.add('mobile-aos'));
   const mobileAosObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('is-revealed');
+      if (entry.isIntersecting) entry.target.classList.add('is-mobile-aos-visible');
       else if (entry.boundingClientRect.top > innerHeight) {
-        entry.target.classList.remove('is-revealed');
+        entry.target.classList.remove('is-mobile-aos-visible');
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -55% 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -48% 0px' });
   mobileAosTargets.forEach(item => mobileAosObserver.observe(item));
 
   function updateVision(){
