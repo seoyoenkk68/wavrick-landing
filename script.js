@@ -8,10 +8,11 @@ import 'lenis/dist/lenis.css';
   const menu = document.getElementById('menuToggle');
   const nav = document.getElementById('mobileNav');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const nativeTouchScroll = matchMedia('(max-width: 767px), (pointer: coarse)');
   let lenis = null;
   function setupSmoothScroll() {
     lenis?.destroy(); lenis = null;
-    if (!reduced.matches) {
+    if (!reduced.matches && !nativeTouchScroll.matches) {
       lenis = new Lenis({autoRaf:true, lerp:.085, smoothWheel:true, syncTouch:false, anchors:true, wheelMultiplier:.85});
       lenis.on('scroll', schedule);
       if (document.body.classList.contains('modal-open')) lenis.stop();
@@ -19,6 +20,7 @@ import 'lenis/dist/lenis.css';
     document.documentElement.dataset.scrollEngine = lenis ? 'lenis' : 'native';
   }
   reduced.addEventListener('change', setupSmoothScroll);
+  nativeTouchScroll.addEventListener('change', setupSmoothScroll);
   addEventListener('pagehide', () => lenis?.destroy(), {once:true});
   const about = document.getElementById('about');
   const panels = [...about.querySelectorAll('.about-panel')];
