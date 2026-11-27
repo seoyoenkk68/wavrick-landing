@@ -135,7 +135,7 @@ try {
       const cssOffsetY = cssRect.top - bounds.top;
       const cssScale = Math.max(0.05, cssRect.width / 100);
       const aboutRect = about.getBoundingClientRect();
-      const travel = reduced.matches
+      const travel = reduced.matches || isMobile
         ? 0
         : Math.max(0, Math.min(1, 1 - aboutRect.top / height));
       const waveTravel = Math.max(

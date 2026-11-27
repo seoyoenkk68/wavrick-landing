@@ -14,6 +14,7 @@ import 'lenis/dist/lenis.css';
     if (!reduced.matches) {
       lenis = new Lenis({autoRaf:true, lerp:.085, smoothWheel:true, syncTouch:false, anchors:true, wheelMultiplier:.85});
       lenis.on('scroll', schedule);
+      if (document.body.classList.contains('modal-open')) lenis.stop();
     }
     document.documentElement.dataset.scrollEngine = lenis ? 'lenis' : 'native';
   }
@@ -41,7 +42,6 @@ import 'lenis/dist/lenis.css';
   const build = document.getElementById('how-we-build');
   const introParts = [...build.querySelector('.build-intro').children];
   const buildSteps = [...build.querySelectorAll('.build-step')];
-  const stepMarkers = [...build.querySelectorAll('.build-step-index span')];
   function updateBuildCopy() {
     const depth = -build.getBoundingClientRect().top / innerHeight;
     const businessReturn = smooth((innerHeight - document.getElementById('our-business').getBoundingClientRect().top) / (innerHeight * .65));
@@ -61,8 +61,7 @@ import 'lenis/dist/lenis.css';
       const opacity=reduced.matches?1:smooth((.54-Math.abs(relative))/.24);
       step.style.opacity=opacity;
       step.style.visibility=opacity>.001?'visible':'hidden';
-      step.style.transform=`translateY(${-relative*90}px)`;
-      stepMarkers[i].classList.toggle('is-current',i===active);
+      step.style.transform=`translateY(${Math.max(-1,Math.min(1,-relative*2))*24}px)`;
     });
     build.dataset.activeStep=String(active+1);
   }
@@ -92,7 +91,7 @@ import 'lenis/dist/lenis.css';
   function update() {
     const distance = Math.max(1, hero.offsetHeight - innerHeight);
     const p = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / distance));
-    const motion = reduced.matches ? 0 : p;
+    const motion = reduced.matches || innerWidth < 768 ? 0 : p;
     const range = Math.min(innerWidth * .03, 58);
     stage.style.setProperty('--first-x', `${-motion * range}px`);
     stage.style.setProperty('--second-x', `${motion * range}px`);
@@ -200,7 +199,8 @@ import 'lenis/dist/lenis.css';
     }else if(rect.top>innerHeight*0.9){
       visionRevealItems.forEach(item=>item.classList.remove('is-revealed'));
     }
-    const sequence=Math.max(0,Math.min(2,(depth-.3)/1.3));
+    // Let each Always In Motion card linger in the viewport a little longer.
+    const sequence=Math.max(0,Math.min(2,(depth-.15)/1.8));
     const active=Math.round(sequence);
     if(visionHeading){
       if(reduced.matches){
@@ -209,7 +209,7 @@ import 'lenis/dist/lenis.css';
         visionHeading.style.filter='none';
         visionHeading.style.visibility='visible';
       }else{
-        const headingProgress=Math.max(0,Math.min(1,sequence/0.95));
+        const headingProgress=Math.max(0,Math.min(1,sequence/1.2));
         const ease=smooth(headingProgress);
         const moveY=(window.innerWidth<768?60:100)*ease;
         const blur=ease*16;
@@ -224,7 +224,7 @@ import 'lenis/dist/lenis.css';
       const relative=i-sequence;
       const distance=Math.abs(relative);
       card.style.transform=reduced.matches?'none':`translate(-50%, -50%) translateY(${relative*innerHeight*.55}px) perspective(1200px) rotateX(${-relative*17}deg) rotateZ(${relative*2.5}deg) scale(${1-Math.min(distance,1)*.1})`;
-      card.style.opacity=reduced.matches?'1':String(1-Math.min(distance,1)*.68);
+      card.style.opacity=reduced.matches?'1':String(1-Math.min(distance,1)*.92);
       card.style.zIndex=String(5-Math.round(distance*2));
       card.setAttribute('aria-hidden',String(!reduced.matches&&i!==active));
       const opacity=reduced.matches?1:smooth((.52-distance)/.22);
@@ -294,6 +294,7 @@ import 'lenis/dist/lenis.css';
     contactModal.classList.add('is-open');
     contactModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
+    lenis?.stop();
     setMenu(false);
     setTimeout(() => {
       document.getElementById('modalName')?.focus();
@@ -305,6 +306,7 @@ import 'lenis/dist/lenis.css';
     contactModal.classList.remove('is-open');
     contactModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
+    lenis?.start();
     setTimeout(() => {
       contactForm?.reset();
       if (modalFields) modalFields.hidden = false;
@@ -321,7 +323,7 @@ import 'lenis/dist/lenis.css';
   modalOkBtn?.addEventListener('click', closeContactModal);
 
   window.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && contactModal?.classList.contains('is-open')) {
+    if (e.key === 'Escape' && !document.querySelector('.privacy-modal[open]') && contactModal?.classList.contains('is-open')) {
       closeContactModal();
     }
   });
@@ -331,6 +333,33 @@ import 'lenis/dist/lenis.css';
     if (modalFields) modalFields.hidden = true;
     if (modalSuccessBox) modalSuccessBox.hidden = false;
   });
+
+  function setupPolicyDialog(id, triggerSelector) {
+    const dialog = document.getElementById(id);
+    let trigger = null;
+    document.querySelectorAll(triggerSelector).forEach(button => {
+      button.addEventListener('click', () => {
+        trigger = button;
+        dialog.showModal();
+        dialog.querySelector('.privacy-content').scrollTop = 0;
+        document.body.classList.add('modal-open');
+        lenis?.stop();
+      });
+    });
+    dialog.querySelector('.privacy-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      if (!contactModal.classList.contains('is-open')) {
+        document.body.classList.remove('modal-open');
+        lenis?.start();
+      }
+      trigger?.focus();
+    });
+  }
+  setupPolicyDialog('privacyModal', '.footer-privacy');
+  setupPolicyDialog('consentModal', '.modal-privacy-btn');
 
   setupSmoothScroll();
   update();
