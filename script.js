@@ -45,6 +45,7 @@ import 'lenis/dist/lenis.css';
   const introParts = [...build.querySelector('.build-intro').children];
   const buildSteps = [...build.querySelectorAll('.build-step')];
   function updateBuildCopy() {
+    if (innerWidth < 768) return;
     const depth = -build.getBoundingClientRect().top / innerHeight;
     const businessReturn = smooth((innerHeight - document.getElementById('our-business').getBoundingClientRect().top) / (innerHeight * .65));
     const blackout = smooth((depth + .45) / .5) * (1 - businessReturn);
@@ -193,7 +194,22 @@ import 'lenis/dist/lenis.css';
   },{threshold:0,rootMargin:'0px 0px -20% 0px'});
   if(visionSection) visionObserver.observe(visionSection);
 
+  const mobileAosTargets = [...document.querySelectorAll(
+    '.build-intro > *, .build-step, .vision-card, .vision-copy',
+  )];
+  mobileAosTargets.forEach(item => item.classList.add('mobile-aos'));
+  const mobileAosObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('is-revealed');
+      else if (entry.boundingClientRect.top > innerHeight) {
+        entry.target.classList.remove('is-revealed');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -55% 0px' });
+  mobileAosTargets.forEach(item => mobileAosObserver.observe(item));
+
   function updateVision(){
+    if(innerWidth < 768) return;
     const rect=visionSection.getBoundingClientRect();
     const depth=-rect.top/innerHeight;
     if(rect.top<=innerHeight*0.75){

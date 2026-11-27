@@ -3981,4 +3981,216 @@ body.modal-open {
   }
 }
 
+/* Mobile chapters read as a normal page flow; the 3D cube stays scroll-linked. */
+@media (max-width: 767px) {
+  .about-scroll {
+    height: 480vh;
+  }
+  .about-sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 620px;
+    overflow: hidden;
+  }
+  .about-chapter-meta {
+    top: auto;
+    bottom: 106px;
+  }
+  .about-inner {
+    height: 100%;
+    padding: 0;
+  }
+  .about-sequence {
+    position: absolute;
+    inset: 0;
+  }
+  .about-panel,
+  .about-panel.is-active {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 54%;
+    width: 100%;
+    max-width: var(--about-reading);
+    margin-inline: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%);
+  }
+  .about-panel.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .build-scroll {
+    height: auto;
+  }
+  .build-sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+  }
+  .build-layout {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    padding-top: 112px;
+    padding-bottom: 88px;
+  }
+  .build-intro {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+  .build-intro > * {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+  .build-process {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    opacity: 1 !important;
+    transform: none;
+  }
+  .build-step-index {
+    display: none;
+  }
+  .build-step-viewport {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+    overflow: visible;
+  }
+  .build-step,
+  .build-step-viewport .build-step {
+    position: relative;
+    inset: auto;
+    display: block;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    margin: 0;
+    will-change: auto;
+  }
+
+  .vision-section {
+    height: auto;
+  }
+  .vision-sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding: 104px 0 48px;
+  }
+  .vision-heading {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    padding: 0 24px;
+    text-align: center;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  .vision-group,
+  .vision-group.vision-reveal {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 48px);
+    margin: 0 auto;
+    gap: 0;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .vision-group > .vision-card-stage,
+  .vision-group > .vision-copy-stage {
+    display: contents;
+  }
+  .vision-group .vision-card {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.5;
+    margin: 0;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .vision-group .vision-card[data-vision-card="0"] { order: 1; }
+  .vision-group .vision-card[data-vision-card="1"] { order: 3; }
+  .vision-group .vision-card[data-vision-card="2"] { order: 5; }
+  .vision-group .vision-copy {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    margin: 24px 0 52px;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .vision-group .vision-copy[data-vision-copy="0"] { order: 2; }
+  .vision-group .vision-copy[data-vision-copy="1"] { order: 4; }
+  .vision-group .vision-copy[data-vision-copy="2"] { order: 6; }
+  .vision-bottom {
+    display: none;
+  }
+  .vision-reveal,
+  .vision-group.vision-reveal {
+    transition: none !important;
+    will-change: auto;
+  }
+
+  .build-intro > .mobile-aos,
+  .build-step.mobile-aos,
+  .vision-group .vision-card.mobile-aos,
+  .vision-group .vision-copy.mobile-aos {
+    opacity: 0 !important;
+    transform: translate3d(0, 34px, 0) !important;
+    transition:
+      opacity 850ms ease,
+      transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .build-intro > .mobile-aos.is-revealed,
+  .build-step.mobile-aos.is-revealed,
+  .vision-group .vision-card.mobile-aos.is-revealed,
+  .vision-group .vision-copy.mobile-aos.is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .build-intro > .mobile-aos:nth-child(2) { transition-delay: 80ms; }
+  .build-intro > .mobile-aos:nth-child(3) { transition-delay: 160ms; }
+  .vision-group .vision-card.mobile-aos,
+  .vision-group .vision-copy.mobile-aos {
+    transition-delay: 40ms;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .build-intro > .mobile-aos,
+    .build-step.mobile-aos,
+    .vision-group .vision-card.mobile-aos,
+    .vision-group .vision-copy.mobile-aos {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+}
+
 
